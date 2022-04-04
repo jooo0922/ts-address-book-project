@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "target": "es5",
+    "lib": ["es2015", "dom", "dom.iterable"],
+    "noImplicitAny": true, // 일단 any 타입이라도 무조건 자동적으로 선언되도록 함.
+    "strict": true, // 타입스크립트에 엄격한 타입 검사 적용
+    "strictFunctionTypes": true // 이미 strict 옵션이 활성화되서 얘를 활성화해도 별 차이 없을 수 있음.
+  },
+  "include": ["./src/**/*"]
+}
