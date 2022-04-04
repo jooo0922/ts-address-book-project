@@ -70,6 +70,14 @@ function fetchContacts(): Promise<Contact[]> {
   });
 }
 
+// findContactByPhone() 메서드에 넣어줄 phoneType 인자값을
+// 변수화하여 사용하기 위해 enum 을 만듦.
+enum PhoneType {
+  Home = "home",
+  Office = "office",
+  Studio = "studio",
+}
+
 // main
 class AddressBook {
   // TODO: 아래 변수의 타입을 지정해보세요.
@@ -77,6 +85,7 @@ class AddressBook {
 
   constructor() {
     this.fetchData();
+    this.findContactByPhone(1234, PhoneType.Home); // 이런 식으로 변수화된 이넘값을 인자로 넘기면 문자열로 넘길 때처럼 오탈자 걱정을 안해도 됨.
   }
 
   // fetchData() 메서드는 무언가를 리턴해주지는 않으므로, 리턴값을 void, 즉 아무것도 없음으로 하는 게 맞겠지!
@@ -91,6 +100,8 @@ class AddressBook {
 
   /* TODO: 아래 함수들의 파라미터 타입과 반환 타입을 지정해보세요 */
   findContactByName(name: string): Contact[] {
+    // filter 는 조건에 맞는 요소들을 추려서 다시 '배열'로 묶어 리턴해주니까,
+    // 리턴값은 기본적으로 [] 배열이 되고, Contact 인터페이스 구조로 된 요소들의 배열이므로, Contact[] 이렇게 보면 됨!
     return this.contacts.filter((contact) => contact.name === name);
   }
 
@@ -98,13 +109,28 @@ class AddressBook {
     return this.contacts.filter((contact) => contact.address === address);
   }
 
-  findContactByPhone(phoneNumber: number, phoneType: string): Contact[] {
+  /**
+   * 원래 phoneType 은 string 으로 타입지정을 해도 상관없기는 함.
+   *
+   * 그런데, 실무에서 코드를 짤 때에는
+   * findContacByPhone('homee') 이런 식으로 전달하는 값에
+   * 오탈자가 나서 버그가 나는 경우가 빈번하기 때문에
+   *
+   * 아예 home, office, studio 세 가지의 값들을
+   * 변수화시켜서(즉, 제한된 문자열의 집합으로 만드는 것!)
+   * 타입으로 지정하는 게 타입 관점에서는
+   * 더 안전하다고 볼 수 있음.
+   *
+   * -> 이럴 때 사용하는 것이 '이넘(enum)'
+   */
+  findContactByPhone(phoneNumber: number, phoneType: PhoneType): Contact[] {
     return this.contacts.filter(
       (contact) => contact.phones[phoneType].num === phoneNumber
     );
   }
 
-  addContact(contact: Contact) {
+  // this.fetchData() 와 마찬가지로 별도의 리턴값이 없으면 리턴값 타입을 void 로 지정해야지!
+  addContact(contact: Contact): void {
     this.contacts.push(contact);
   }
 
