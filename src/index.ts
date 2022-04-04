@@ -79,8 +79,12 @@ class AddressBook {
     this.fetchData();
   }
 
-  fetchData() {
-    fetchContacts().then((response) => {
+  // fetchData() 메서드는 무언가를 리턴해주지는 않으므로, 리턴값을 void, 즉 아무것도 없음으로 하는 게 맞겠지!
+  // GLSL 도 main 함수는 리턴값이 딱히 없으므로 void를 리턴값으로 명시했던 것처럼!
+  fetchData(): void {
+    // 여기는 fetchContacts() 메서드가 위에서 보듯이 Promise 를 통해 Contact[] 타입의 값을 리턴해주므로,
+    // .then() 으로 받는 인자값의 타입도 당연히 Contact[] 로 ts 랭귀지 서버가 타입추론을 해줄 수 있겠지.
+    fetchContacts().then((response: Contact[]) => {
       this.contacts = response;
     });
   }
