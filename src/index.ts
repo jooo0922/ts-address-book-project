@@ -12,6 +12,22 @@ interface Contact {
 
 // api
 // TODO: 아래 함수의 반환 타입을 지정해보세요.
+/**
+ * Promise 리턴 타입 정의
+ *
+ * 만약 어떤 함수가 Promise 값을 리턴한다면,
+ * 타입스크립트에서는 그 리턴값의 타입을
+ * 'Promise' 라고 정의하도록 되어있음.
+ *
+ * 그런데 그냥 Promise 만 쓰면,
+ * TS 랭귀지 서버가 '제네릭도 옆에 같이 쓰세요'
+ * 라고 띄워 줌.
+ *
+ * -> 이러한 케이스가 실제 앱 개발 환경에서
+ * 제네릭이 가장 많이 쓰이는 상황이라고 볼 수 있음.
+ * 즉, API 를 호출해와서, API 응답의 규칙 혹은 규격을
+ * 정의할 때 제네릭을 가장 많이 사용한다고 보면 됨.
+ */
 function fetchContacts(): Promise<Contact[]> {
   // TODO: 아래 변수의 타입을 지정해보세요.
   const contacts: Contact[] = [
