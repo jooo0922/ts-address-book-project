@@ -144,4 +144,14 @@ class AddressBook {
   /* ------------------------------------------------ */
 }
 
+// .map() 에 대한 간단한 설명
+let heroes = [
+  { name: "Tony", age: 30 },
+  { name: "Captain", age: 100 },
+];
+heroes.map(function (hero) {
+  return hero.name;
+}); // ['Tony', 'Captain'] 이런 식으로 각 요소에 매핑되는 요소들을 배열로 묶어 리턴해 줌.
+// 따라서, 얘내의 타입을 지정하려면, 리턴되는 배열이 어떤 요소들로 묶인 배열인지를 알아야겠지?
+
 new AddressBook();
