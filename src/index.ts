@@ -1,14 +1,16 @@
-interface PhoneNumberDictionary {
-  [phone: string]: {
-    num: number;
-  };
-}
+import { Contact, PhoneType } from "./types"; // TS 모듈 시스템을 적용하여 타입 import
 
-interface Contact {
-  name: string;
-  address: string;
-  phones: PhoneNumberDictionary;
-}
+// interface PhoneNumberDictionary {
+//   [phone: string]: {
+//     num: number;
+//   };
+// }
+
+// interface Contact {
+//   name: string;
+//   address: string;
+//   phones: PhoneNumberDictionary;
+// }
 
 // api
 // TODO: 아래 함수의 반환 타입을 지정해보세요.
@@ -72,11 +74,11 @@ function fetchContacts(): Promise<Contact[]> {
 
 // findContactByPhone() 메서드에 넣어줄 phoneType 인자값을
 // 변수화하여 사용하기 위해 enum 을 만듦.
-enum PhoneType {
-  Home = "home",
-  Office = "office",
-  Studio = "studio",
-}
+// enum PhoneType {
+//   Home = "home",
+//   Office = "office",
+//   Studio = "studio",
+// }
 
 // main
 class AddressBook {
